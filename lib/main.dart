@@ -1,8 +1,10 @@
+import 'screens/add_to_do_screen.dart';
+import 'screens/sign_up_screen.dart';
+import '/screens/to_do_detail_screen.dart';
+import '/screens/to_do_list_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:to_do/screens/sign_up.dart';
-
-import 'package:to_do/screens/task.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +28,10 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        "/": (ctx) => const SignUp(),
-        Task.routeName: (ctx) => const Task(),
+        "/": (ctx) => const SignUpScreen(),
+        ToDoListScreen.routeName: (ctx) => const ToDoListScreen(),
+        AddToDoScreen.routeName: (ctx) => AddToDoScreen(),
+        ToDoDetailScreen.routeName: (ctx) => ToDoDetailScreen(),
       },
     );
   }
