@@ -83,19 +83,28 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                     itemCount: item.length,
                     itemBuilder: (ctx, i) {
                       return Container(
-                        margin: EdgeInsets.only(bottom: 5),
+                        margin: const EdgeInsets.only(bottom: 5),
                         decoration: BoxDecoration(
                             color: const Color(0xffdbdbdb),
                             borderRadius: BorderRadius.circular(15)),
                         child: ListTile(
-                          iconColor: const Color(0xff383838),
                           textColor: const Color(0xff383838),
                           tileColor: const Color(0xff383838),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           leading: true
-                              ? Icon(Icons.work_outline)
-                              : Icon(Icons.home_outlined),
+                              ? const CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child: Icon(
+                                      color: Color(0xff383838),
+                                      Icons.work_outline),
+                                )
+                              : const CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  child: Icon(
+                                      color: Color(0xff383838),
+                                      Icons.home_outlined),
+                                ),
                           title: Text(
                             item[i],
                           ),
@@ -106,19 +115,19 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                             decoration: BoxDecoration(
                                 color: const Color(0xffFBEFB4),
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Checkbox(
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.padded,
-                                fillColor: MaterialStateProperty.all(
-                                    Colors.transparent),
-                                checkColor: Color(0xff383838),
-                                activeColor: Color(0xffFBEFB4),
-                                value: value,
-                                onChanged: (value) {
-                                  setState(() {
-                                    this.value = value!;
-                                  });
-                                }),
+                            child: Transform.scale(
+                              scale: 2,
+                              child: Checkbox(
+                                  fillColor: MaterialStateProperty.all(
+                                      Colors.transparent),
+                                  checkColor: const Color(0xff383838),
+                                  value: value,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      this.value = value!;
+                                    });
+                                  }),
+                            ),
                           ),
                         ),
                       );
