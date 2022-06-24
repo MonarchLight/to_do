@@ -17,13 +17,21 @@ class ToDoListScreen extends StatefulWidget {
 
 class _ToDoListScreenState extends State<ToDoListScreen> {
   int currentPage = 0;
+  bool value = false;
+  final List<String> item = [
+    "be",
+    "bu",
+    "by",
+    "ui",
+    "oi",
+  ];
 
   Widget navigationButton(String title, int i) {
     return SizedBox(
-      width: 110,
+      width: 106,
       child: ElevatedButton(
         style: ButtonStyle(
-            elevation: i == currentPage ? MaterialStateProperty.all(15) : null,
+            elevation: i == currentPage ? MaterialStateProperty.all(10) : null,
             shadowColor: MaterialStateProperty.all(Colors.black),
             padding: MaterialStateProperty.all(
                 const EdgeInsets.symmetric(horizontal: 5, vertical: 10)),
@@ -39,7 +47,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         },
         child: Text(
           title,
-          style: const TextStyle(color: Colors.black, fontSize: 20),
+          style: const TextStyle(color: Colors.black, fontSize: 18),
         ),
       ),
     );
@@ -68,8 +76,56 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                   ],
                 ),
               ),
-               CircleAvatar(child: ,)
-               
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(top: 25, right: 10, left: 10),
+                  child: ListView.builder(
+                    itemCount: item.length,
+                    itemBuilder: (ctx, i) {
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 5),
+                        decoration: BoxDecoration(
+                            color: const Color(0xffdbdbdb),
+                            borderRadius: BorderRadius.circular(15)),
+                        child: ListTile(
+                          iconColor: const Color(0xff383838),
+                          textColor: const Color(0xff383838),
+                          tileColor: const Color(0xff383838),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          leading: true
+                              ? Icon(Icons.work_outline)
+                              : Icon(Icons.home_outlined),
+                          title: Text(
+                            item[i],
+                          ),
+                          subtitle: Text(
+                            item[i],
+                          ),
+                          trailing: Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xffFBEFB4),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Checkbox(
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.padded,
+                                fillColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                                checkColor: Color(0xff383838),
+                                activeColor: Color(0xffFBEFB4),
+                                value: value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    this.value = value!;
+                                  });
+                                }),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )
             ],
           ),
         ),
